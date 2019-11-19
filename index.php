@@ -1,14 +1,13 @@
 <?php
-$dbhost = "mysql";
-$dbuser = "user";
-$dbpwd = "pass";
-$dbname = "testdb";
-$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname);
-if ($connection->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-} else {
-    printf("Connected to the database");
-}
-$connection->close();
+   class MyDB extends SQLite3 {
+      function __construct() {
+         $this->open('test.db');
+      }
+   }
+   $db = new MyDB();
+   if(!$db) {
+      echo $db->lastErrorMsg();
+   } else {
+      echo "Opened database successfully\n";
+   }
 ?>
